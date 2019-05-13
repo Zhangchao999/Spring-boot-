@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.geoary.mapper.PersonXmlMapper">
+
+    <resultMap id="baseResultMap" type="cn.geoary.entity.Person">
+        <id column="personname" property="name"/>
+        <id column="age" property="age"/>
+        <id column="id" property="id"></id>
+    </resultMap>
+
+    <sql id="base_column">
+        id, personname, age
+    </sql>
+
+    <select id="getAll" resultMap="baseResultMap">
+      select
+      <include refid="base_column"/>
+        from person
+    </select>
+
+    <select id="getAllMap" resultType="HashMap">
+        select * from person
+    </select>
+
+    <select id="getOneByName" parameterType="java.lang.String" resultType="HashMap">
+        select * from person where personname = #{name}
+    </select>
+
+    <insert id="insertPerson" parameterType="HashMap">
+        insert into person (personname, age) values (#{name}, #{age})
+    </insert>
+
+    <update id="updatePerson" parameterType="HashMap">
+        update person set personname = #{name}, age = #{age} where id = #{id}
+    </update>
+
+    <delete id="deletePerson" parameterType="Integer">
+      delete from person where id = #{id}
+    </delete>
+</mapper>
