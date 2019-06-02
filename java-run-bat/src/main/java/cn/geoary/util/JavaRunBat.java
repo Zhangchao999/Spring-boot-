@@ -1,5 +1,7 @@
 package cn.geoary.util;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +15,8 @@ import java.util.Date;
  * @author: Zhangc
  * @create: 2019-05-06 14:41
  **/
-@Component
+//@Configuration
+//@EnableScheduling
 public class JavaRunBat {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -25,9 +28,10 @@ public class JavaRunBat {
      * @date 2019/5/6 
      */
     // 每天1点执行
-    @Scheduled(cron = "0 0 1 * * ?")
+    //@Scheduled(cron = "0 0 1 * * ?")
     // 3分钟执行一次
     //@Scheduled(cron = "0 0/3 * * * ?")
+    @Scheduled(cron = "0/10 * * * * ?")
     public void timingBat(){
         runBat();
     }
